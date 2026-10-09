@@ -1,51 +1,160 @@
 # NatureQuest 🌿
 
-NatureQuest turns a little free time into a small, screen-light outdoor adventure. The app uses an open-weight Gemma model through Ollama when available, and a built-in fallback so the interface still works during setup.
+### Turn your free time into an outdoor adventure.
 
-## Requirements
-- Windows 10/11
-- Python 3.10+
-- Ollama for local AI generation (optional for the first UI test)
+NatureQuest is a local AI-powered nature exploration app that encourages people to spend less time on screens and more time discovering the world around them.
 
-## 1. Install Ollama
-Install from https://ollama.com/download/windows
+Generate personalized outdoor quests based on your available time, surroundings, interests, and energy level. Spotted something interesting along the way? Use **Curiosity Capture** to explore a photo with your local AI and turn a simple observation into a new learning adventure.
 
-Then open PowerShell or the VS Code terminal and run:
+## ✨ Features
+
+### 🧭 Personalized Outdoor Quests
+
+* Generate outdoor missions based on your time, setting, interests, and energy level.
+* Break an adventure into manageable missions.
+* Mark missions as complete as you explore.
+* Save and revisit your quest history in your browser.
+
+### 📸 Curiosity Capture
+
+Turn a photo into an opportunity to learn something new.
+
+Upload an image of a plant, fungus, insect, rock, or another interesting subject, and NatureQuest uses the local Gemma model through Ollama to generate:
+
+* **Your Discovery:** A title and description of the subject.
+* **What We Can Observe:** Visible details supported by the image.
+* **Did You Know?:** An educational fact related to the discovery.
+* **What We Can't Be Certain About:** Limitations and uncertainty in identification.
+* **Your Follow-up Quest:** A suggested outdoor activity inspired by the discovery.
+
+The goal is not just to identify something, but to encourage curiosity and further exploration.
+
+### 🤖 Local AI with a Fallback
+
+* Uses the open-weight `gemma3:4b` model through Ollama for AI-generated content.
+* Provides a rule-based fallback for outdoor quest generation when the AI is unavailable.
+* Runs AI inference through a local Ollama service rather than requiring a hosted AI API for these features.
+
+**Note:** Curiosity Capture requires Ollama and the Gemma model to be available. The fallback for quest generation does not mean every AI feature works without the model.
+
+## 🛠️ Tech Stack
+
+* **Python** — application backend
+* **FastAPI** — API and server
+* **HTML, CSS, JavaScript** — frontend
+* **Ollama + Gemma 3 (4B)** — local AI text and image understanding
+* **Browser storage** — quest history
+
+## 📋 Requirements
+
+* Windows 10 or Windows 11
+* Python 3.10 or newer
+* Git (optional, for cloning the repository)
+* Ollama with the `gemma3:4b` model for AI features
+
+## 🚀 Getting Started
+
+### 1. Install Ollama
+
+Download and install Ollama from [ollama.com/download/windows](https://ollama.com/download/windows).
+
+Open PowerShell and download/run the model:
 
 ```powershell
 ollama run gemma3:4b
 ```
 
-The first run downloads the model (a few GB). Once it opens a chat, type a simple prompt and check that it responds. Type `/bye` to leave the model chat. Ollama usually continues running in the background.
+On the first run, Ollama downloads the model, which requires several gigabytes of disk space. After confirming that it responds, type `/bye` to leave the chat.
 
-## 2. Run NatureQuest
-Open this folder in VS Code, then in the terminal:
+Make sure the Ollama service is running when you use the AI features.
+
+### 2. Get the Project
+
+Clone the repository:
+
+```powershell
+git clone https://github.com/kunalGupta5780/NatureQuest.git
+cd NatureQuest
+```
+
+Alternatively, download the project as a ZIP from GitHub and extract it.
+
+### 3. Set Up Python
+
+From the NatureQuest project folder, run:
 
 ```powershell
 py -m venv .venv
+```
+
+Activate the environment:
+
+```powershell
 .\.venv\Scripts\Activate.ps1
+```
+
+Install the dependencies:
+
+```powershell
 python -m pip install -r requirements.txt
+```
+
+If PowerShell blocks environment activation, use the environment's Python executable directly:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+### 4. Start NatureQuest
+
+With the virtual environment activated, run:
+
+```powershell
 uvicorn main:app --reload
 ```
 
-If PowerShell blocks activation, use the VS Code terminal with Command Prompt, or run `.venv\Scripts\python.exe -m pip install -r requirements.txt` and `.venv\Scripts\python.exe -m uvicorn main:app --reload`.
+Or, without activating the environment:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn main:app --reload
+```
 
 Open http://127.0.0.1:8000 in your browser.
 
-## 3. What to test
-- Generate a quest with different time, setting, interests, and energy.
-- Mark missions complete.
-- Refresh the page and check that the history is still saved.
-- Stop Ollama and generate another quest: the app should use its fallback.
+## 🧪 What to Test
 
-## Project structure
-- `main.py` — FastAPI API and Ollama connection
-- `static/index.html` — page structure
-- `static/style.css` — visual design
-- `static/app.js` — form handling, mission cards, local history
+* Generate quests with different time limits, settings, interests, and energy levels.
+* Complete missions and refresh the page to check whether your quest history persists.
+* Upload photos of different subjects using Curiosity Capture.
+* Check whether the AI distinguishes visible observations from general educational facts.
+* Test uncertain or ambiguous images and verify that the AI communicates its limitations.
+* Stop the Ollama service and check the quest generator's fallback behavior.
 
-## Honest project note
-The fallback quest is rule-based; AI-generated quests come from the local Gemma model when Ollama is running. Do not claim the project works fully offline until you have tested it after downloading the model and disconnecting from the internet.
+## 📁 Project Structure
 
-## Before sharing or submitting
-Add your own improvements, screenshots, a demo, and a GitHub repository. Explain which parts you built and tested yourself.
+```text
+NatureQuest/
+├── main.py               # FastAPI backend and Ollama integration
+├── requirements.txt      # Python dependencies
+├── README.md             # Project documentation
+└── static/
+    ├── index.html        # Application interface
+    ├── style.css         # Styling and layout
+    └── app.js            # Frontend behavior and quest history
+```
+
+## 🔒 Privacy and Responsible Use
+
+NatureQuest sends AI requests to the local Ollama service configured for the application. Its AI features depend on your local model and service being available.
+
+AI-generated descriptions and identifications may be incorrect. Treat them as suggestions rather than definitive scientific identification. Do not eat, collect, or handle unfamiliar plants, fungi, or animals based only on an AI response.
+
+## 🌱 Project Goal
+
+NatureQuest aims to make outdoor exploration more engaging by connecting real-world observations with accessible learning and small, achievable adventures.
+
+**Notice something. Get curious. Go explore.**
+
+---
+
+**Repository:** [kunalGupta5780/NatureQuest](https://github.com/kunalGupta5780/NatureQuest)
