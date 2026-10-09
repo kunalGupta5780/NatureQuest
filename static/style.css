@@ -770,3 +770,365 @@ padding: 16px;
 font-size: 42px;
 }
 }
+
+/* Expandable adventure journal */
+#history-list .history-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+#history-list .history-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+#history-list .history-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+#history-list .history-copy strong {
+  overflow-wrap: anywhere;
+}
+
+#history-list .history-copy small {
+  line-height: 1.5;
+}
+
+#history-list .history-chevron {
+  flex-shrink: 0;
+  transition: transform 180ms ease;
+}
+
+#history-list .history-toggle[aria-expanded="true"] .history-chevron {
+  transform: rotate(180deg);
+}
+
+#history-list .history-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+#history-list .history-details {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+#history-list .history-details h4 {
+  margin: 12px 0 8px;
+}
+
+#history-list .history-intro,
+#history-list .history-extra,
+#history-list .history-legacy-note {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+#history-list .history-missions {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#history-list .history-mission {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+#history-list .history-mission.completed {
+  opacity: 0.78;
+}
+
+#history-list .history-mission-mark {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+#history-list .history-extra {
+  margin-top: 14px;
+}
+
+@media (max-width: 480px) {
+  #history-list .history-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #history-list .history-status {
+    justify-self: start;
+  }
+}
+
+
+/* Reliable expandable journal entries */
+#history-list .history-item {
+  display: block;
+}
+
+#history-list .history-toggle {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+#history-list .history-toggle::-webkit-details-marker {
+  display: none;
+}
+
+#history-list .history-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+#history-list .history-copy strong {
+  overflow-wrap: anywhere;
+}
+
+#history-list .history-copy small {
+  line-height: 1.5;
+}
+
+#history-list .history-chevron {
+  flex-shrink: 0;
+  transition: transform 180ms ease;
+}
+
+#history-list .history-item[open] .history-chevron {
+  transform: rotate(180deg);
+}
+
+#history-list .history-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+#history-list .history-details {
+  display: block;
+  min-width: 0;
+  padding-top: 14px;
+  margin-top: 12px;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+#history-list .history-details h4 {
+  margin: 12px 0 8px;
+}
+
+#history-list .history-intro,
+#history-list .history-extra,
+#history-list .history-legacy-note {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+#history-list .history-missions {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#history-list .history-mission {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+#history-list .history-mission-mark {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+/* Adventure journal popup */
+#history-list .history-popup-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+#history-list .history-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+#history-list .history-copy strong,
+#history-list .history-copy small {
+  overflow-wrap: anywhere;
+}
+
+#history-list .history-popup-arrow {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+#history-list .history-popup-trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.history-modal {
+  width: min(580px, calc(100% - 32px));
+  max-width: 580px;
+  max-height: 82vh;
+  padding: 0;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 20px;
+  background: var(--surface, #fff);
+  color: var(--text, #20251f);
+  overflow: auto;
+}
+
+.history-modal::backdrop {
+  background: rgba(15, 25, 17, 0.58);
+  backdrop-filter: blur(3px);
+}
+
+.history-modal-panel {
+  padding: 24px;
+}
+
+.history-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.history-modal-header h3 {
+  margin: 0;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.history-modal-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(128, 128, 128, 0.14);
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.history-modal-meta,
+.history-modal-intro,
+.history-modal-extra,
+.history-modal-note {
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.history-modal-meta {
+  margin: 10px 0;
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+.history-modal-status {
+  font-weight: 600;
+}
+
+.history-modal-panel h4 {
+  margin: 22px 0 12px;
+}
+
+.history-modal-missions {
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.history-modal-missions li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.history-modal-missions li.completed .history-modal-mark {
+  font-weight: 700;
+}
+
+.history-modal-mark {
+  flex-shrink: 0;
+}
+
+.history-modal-extra {
+  margin-top: 18px;
+}
+
+/* Fallback styling for browsers without native dialog support */
+.history-modal-fallback-open {
+  position: fixed;
+  inset: 9vh auto auto 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .history-modal-panel {
+    padding: 18px;
+  }
+
+  .history-modal {
+    max-height: 88vh;
+    border-radius: 16px;
+  }
+}
