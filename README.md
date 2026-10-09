@@ -29,6 +29,17 @@ Upload an image of a plant, fungus, insect, rock, or another interesting subject
 
 The goal is not just to identify something, but to encourage curiosity and further exploration.
 
+## 📸 Screenshots
+
+### Outdoor Quest Generator
+![NatureQuest quest generator](screenshots/quest-generator.png)
+
+### Curiosity Capture
+![NatureQuest photo discovery](screenshots/curiosity-capture.png)
+
+### Adventure Journal
+![Expandable adventure journal](screenshots/adventure-journal.png)
+
 ### 🤖 Local AI with a Fallback
 
 * Uses the open-weight `gemma3:4b` model through Ollama for AI-generated content.
