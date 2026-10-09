@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f32">
+  <title>NatureQuest — Find your outside</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="NatureQuest home"><span class="brand-mark">✳</span> NatureQuest</a>
+    <span class="local-pill"><span class="dot"></span> Local-first AI</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">A LITTLE LESS SCROLLING. A LITTLE MORE EXPLORING.</div>
+      <h1>Your next adventure<br><em>starts outside.</em></h1>
+      <p class="hero-copy">Tell us what your day looks like. Get a tiny nature quest, step away from the screen, and notice something new.</p>
+      <div class="hero-note"><span>✦</span> Plan here. Explore out there.</div>
+    </section>
+
+    <section class="planner panel">
+      <div class="section-head">
+        <div><div class="eyebrow">YOUR MOMENT, YOUR MISSION</div><h2>Shape your quest</h2></div>
+        <span class="leaf-art" aria-hidden="true">❧</span>
+      </div>
+      <form id="quest-form">
+        <div class="form-grid">
+          <label>Time available
+            <select name="minutes">
+              <option value="10">10 minutes</option>
+              <option value="20" selected>20 minutes</option>
+              <option value="30">30 minutes</option>
+              <option value="45">45 minutes</option>
+              <option value="60">1 hour</option>
+            </select>
+          </label>
+          <label>Where are you heading?
+            <select name="setting">
+              <option value="park" selected>Park or green space</option>
+              <option value="neighborhood">Neighborhood</option>
+              <option value="garden">Garden or courtyard</option>
+              <option value="other">Somewhere else outdoors</option>
+            </select>
+          </label>
+          <label>What sounds interesting?
+            <select name="interests">
+              <option value="plants and patterns">Plants & patterns</option>
+              <option value="birds and sounds">Birds & sounds</option>
+              <option value="mindful observation">Mindful observation</option>
+              <option value="curiosity and discovery" selected>Curiosity & discovery</option>
+              <option value="clouds and sky">Clouds & sky</option>
+            </select>
+          </label>
+          <label>What's your energy like?
+            <select name="energy">
+              <option value="easy" selected>Easygoing</option>
+              <option value="curious">Curious and alert</option>
+              <option value="active">Ready to move</option>
+            </select>
+          </label>
+        </div>
+        <button class="primary-btn" id="generate-btn" type="submit"><span>✧</span> Create my nature quest <span class="arrow">↗</span></button>
+        <p class="privacy-note"><span>⌂</span> Your choices stay on this device and are sent only to your local AI service.</p>
+      </form>
+    </section>
+
+    
+    <section class="discover-section panel" id="discover-section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">FOLLOW YOUR CURIOSITY</div>
+          <h2>Curiosity Capture</h2>
+        </div>
+        <span class="leaf-art" aria-hidden="true">✿</span>
+      </div>
+
+      <p class="discover-copy">
+        Spotted something fascinating? Share a photo and let your local AI
+        help you explore what you noticed.
+      </p>
+
+      <form id="discover-form">
+        <label class="upload-area" for="nature-image">
+          <span class="upload-icon" aria-hidden="true">↥</span>
+          <strong>Choose a nature photo</strong>
+          <span>JPG, PNG or WebP · Maximum 5 MB</span>
+          <input
+            id="nature-image"
+            name="image"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            required
+          >
+        </label>
+
+        <div id="image-preview-wrap" class="image-preview-wrap hidden">
+          <img id="image-preview" alt="Preview of your selected nature photo">
+          <button id="remove-image" class="text-btn" type="button">
+            Remove photo
+          </button>
+        </div>
+
+        <label class="curiosity-label" for="curiosity-note">
+          What are you curious about? <span>(optional)</span>
+          <textarea
+            id="curiosity-note"
+            name="curiosity"
+            rows="3"
+            maxlength="500"
+            placeholder="Why are these leaves changing colour?"
+          ></textarea>
+        </label>
+
+        <button id="discover-btn" class="primary-btn" type="submit">
+          ✦ Explore this discovery ↗
+        </button>
+
+        <p class="privacy-note">
+          <span>⌂</span>
+          Your photo is sent to your local Gemma AI service for analysis.
+          Avoid uploading photos containing private or identifying information.
+        </p>
+      </form>
+
+      <div id="discover-status" class="discover-status hidden"
+           role="status" aria-live="polite"></div>
+
+      <article id="discover-result" class="discover-result hidden"
+               aria-live="polite">
+        <div class="eyebrow">YOUR DISCOVERY</div>
+        <h3 id="discovery-title"></h3>
+        <p id="discovery-summary"></p>
+
+        <h4>What we can observe</h4>
+        <ul id="discovery-observations"></ul>
+
+        <div class="discovery-fact">
+          <h4>Did you know?</h4>
+          <p id="discovery-fact"></p>
+        </div>
+
+        <div class="discovery-uncertainty">
+          <h4>What we can't be certain about</h4>
+          <p id="discovery-uncertainty"></p>
+        </div>
+
+        <div class="discovery-quest">
+          <h4>🧭 Your follow-up quest</h4>
+          <p id="discovery-quest"></p>
+        </div>
+
+        <span class="source-label">Analysed by local Gemma AI</span>
+      </article>
+    </section>
+
+    <section id="result-section" class="result-section hidden" aria-live="polite">
+      <div class="result-top"><div><div class="eyebrow">YOUR ADVENTURE AWAITS</div><h2 id="quest-title">Your quest</h2></div><span class="quest-stamp">GO<br>OUTSIDE</span></div>
+      <p id="quest-intro" class="quest-intro"></p>
+      <div id="mission-list" class="mission-list"></div>
+      <div class="safety-box"><span>☼</span><p id="quest-safety"></p></div>
+      <div class="reflection"><strong>When you're back</strong><p id="quest-reflection"></p></div>
+      <div class="result-actions"><button id="new-quest" class="secondary-btn" type="button">Make another quest</button><span id="source-label" class="source-label"></span></div>
+    </section>
+
+    <section class="history-section">
+      <div class="history-head"><div><div class="eyebrow">LITTLE MOMENTS ADD UP</div><h2>Your adventure journal</h2></div><button id="clear-history" class="text-btn" type="button">Clear</button></div>
+      <div id="history-list" class="history-list"><p class="empty-state">Your completed quests will appear here. Your next discovery is waiting.</p></div>
+    </section>
+  </main>
+
+  <footer><span>NatureQuest</span><span>Made for the moments beyond the screen 🌱</span></footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
