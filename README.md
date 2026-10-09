@@ -143,16 +143,19 @@ Open http://127.0.0.1:8000 in your browser.
 
 ## 📁 Project Structure
 
-```text
 NatureQuest/
-├── main.py               # FastAPI backend and Ollama integration
-├── requirements.txt      # Python dependencies
-├── README.md             # Project documentation
+├── main.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── screenshots/
+│   ├── quest-generator.png
+│   ├── curiosity-capture.png
+│   └── adventure-journal.png
 └── static/
-    ├── index.html        # Application interface
-    ├── style.css         # Styling and layout
-    └── app.js            # Frontend behavior and quest history
-```
+    ├── index.html
+    ├── style.css
+    └── app.js
 
 ## 🔒 Privacy and Responsible Use
 
