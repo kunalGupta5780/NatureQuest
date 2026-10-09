@@ -141,8 +141,10 @@ Open http://127.0.0.1:8000 in your browser.
 * Test uncertain or ambiguous images and verify that the AI communicates its limitations.
 * Stop the Ollama service and check the quest generator's fallback behavior.
 
+
 ## 📁 Project Structure
 
+```text
 NatureQuest/
 ├── main.py
 ├── requirements.txt
@@ -156,6 +158,7 @@ NatureQuest/
     ├── index.html
     ├── style.css
     └── app.js
+```
 
 ## 🔒 Privacy and Responsible Use
 
